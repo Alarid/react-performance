@@ -107,7 +107,22 @@ function Grid() {
 }
 Grid = React.memo(Grid)
 
-function CellImpl({cell, row, column}) {
+/**
+ * HOC: accepts a component, memoize it and renders it, forwarding a ref
+ * and a slice of the state
+ * The slice is computed by the user of the HOC
+ */
+function withStateSlice(Comp, slice) {
+  const MemoComp = React.memo(Comp)
+  function Wrapper(props, ref) {
+    const state = useAppState()
+    return <MemoComp ref={ref} state={slice(state, props)} {...props} />
+  }
+  Wrapper.displayName = `withStateSlice(${Comp.displayName || Comp.name})`
+  return React.memo(React.forwardRef(Wrapper))
+}
+
+function Cell({state: cell, row, column}) {
   const dispatch = useAppDispatch()
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
   return (
@@ -123,20 +138,7 @@ function CellImpl({cell, row, column}) {
     </button>
   )
 }
-CellImpl = React.memo(CellImpl)
-
-/**
- * Middle-man component for the Cell - forward render to CellImpl
- * CellImpl don't consume the app state and is memoized, so it won't
- * re-render if ONE cell is clicked
- */
-function Cell({row, column}) {
-  const state = useAppState()
-  const cell = state.grid[row][column]
-
-  return <CellImpl cell={cell} row={row} column={column} />
-}
-Cell = React.memo(Cell)
+Cell = withStateSlice(Cell, (state, {row, column}) => state.grid[row][column])
 
 function DogNameInput() {
   const [state, dispatch] = useDogState()
