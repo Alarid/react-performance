@@ -1,3 +1,21 @@
+This is a fork of the workshop <a href="https://epicreact.dev/performance">⚡
+React Performance</a> from 🚀 EpicReact.Dev by
+[Kent C. Dodds](https://kentcdodds.com/). In this fork, I followed along the
+workshop exercises by working in the `src/exercise` folder, while elaborating on
+my learnings for each exercise in the associated markdown file.
+
+## Table of content
+
+1. [Code splitting](https://github.com/Alarid/react-performance/blob/main/src/exercise/01.md)
+2. [useMemo for expensive calculations](https://github.com/Alarid/react-performance/blob/main/src/exercise/02.md)
+3. [React.memo for reducing re-renders](https://github.com/Alarid/react-performance/blob/main/src/exercise/03.md)
+4. [Window Large Lists with react-virtual](https://github.com/Alarid/react-performance/blob/main/src/exercise/04.md)
+5. [Optimize Context Value](https://github.com/Alarid/react-performance/blob/main/src/exercise/05.md)
+6. [Fix Perf Death by a Thousand Cuts](https://github.com/Alarid/react-performance/blob/main/src/exercise/06.md)
+7. [Production Performance Monitoring](https://github.com/Alarid/react-performance/blob/main/src/exercise/07.md)
+
+---
+
 <div>
   <h1 align="center"><a href="https://epicreact.dev/performance">⚡ React Performance 🚀 EpicReact.Dev</a></h1>
   <strong>
